@@ -1,1 +1,12 @@
-site_name: My Docs
+site_name: 疾风计划笔记
+
+theme:
+  name: material
+  # name: gitbook
+
+nav:
+  - 简介: index.md
+  - 程序设计基础: Fundamentals_of_Programming/index.md
+  # - 1. 编程初步: Fundamentals_of_Programming/ch1.md
+  # - 2. 变量与代数思维: Fundamentals_of_Programming/ch2.md
+  - About: about.md
