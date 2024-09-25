@@ -1,5 +1,6 @@
 site_name: 疾风计划笔记
 site_url: https://ernestearth.github.io/jifeng/
+site_author: 南朔
 
 theme:
   name: material
@@ -8,6 +9,4 @@ theme:
 nav:
   - 简介: index.md
   - 程序设计基础: Fundamentals_of_Programming/index.md
-  # - 1. 编程初步: Fundamentals_of_Programming/ch1.md
-  # - 2. 变量与代数思维: Fundamentals_of_Programming/ch2.md
   - About: about.md
