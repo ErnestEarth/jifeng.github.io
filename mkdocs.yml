@@ -1,4 +1,5 @@
 site_name: 疾风计划笔记
+site_url: https://ernestearth.github.io/jifeng/
 
 theme:
   name: material
