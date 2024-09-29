@@ -29,7 +29,7 @@ nav:
     - ch8 基于接口组合,应对复杂变化: Object_Oriented_Programming/ch8.md
     - ch9 增加抽象层级,隔离复杂变化: Object_Oriented_Programming/ch9.md
   - 离散数学: 
-    # - 课程简介: Discrete_Mathematics/index.md
+    - 课程简介: Discrete_Mathematics/index.md
     - ch1 命题逻辑的基本概念: Discrete_Mathematics/ch1.md
     - ch2 命题逻辑的等值和推理演算: Discrete_Mathematics/ch2.md
     - ch3 命题逻辑的公理化: Discrete_Mathematics/ch3.md
