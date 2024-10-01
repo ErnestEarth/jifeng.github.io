@@ -30,6 +30,7 @@ nav:
     - ch9 增加抽象层级,隔离复杂变化: Object_Oriented_Programming/ch9.md
   - 离散数学: 
     - 课程简介: Discrete_Mathematics/index.md
+    - ch0 课前预习: Discrete_Mathematics/ch0.md
     - ch1 命题逻辑的基本概念: Discrete_Mathematics/ch1.md
     - ch2 命题逻辑的等值和推理演算: Discrete_Mathematics/ch2.md
     - ch3 命题逻辑的公理化: Discrete_Mathematics/ch3.md
