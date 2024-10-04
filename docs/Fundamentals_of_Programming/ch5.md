@@ -103,8 +103,8 @@ void QuickSort(int *a, int start, int end)
     // 2. 将基准值放在 left 的位置
     a[left] = key;
     // 3. 对子数组进行排序
-    QuickSort(left, left_idx);
-    QuickSort(right, right_idx);
+    QuickSort(a, start, left);
+    QuickSort(a, left + 1, end);
 }
 ```
 
