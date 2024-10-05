@@ -91,28 +91,23 @@
         number[x] = x;
     ```
 
-## 3. 埃氏筛流程
-
-1. “筛子” 系统的初始化
-
-2. 枚举 $2$ 到 $\sqrt {100}$ 的每个数 $d$
-    - 如果 $d$ 没有被筛掉
-        - 用 $d$ 筛掉 $100$ 以内除了 $d$ 之外 $d$ 的倍数
-
-3. 输出所有没有被筛掉的数
+## 3. 埃氏筛
 
 ```cpp
-const int N = 100;		// const 表示定义符号常量
+const int N = 100;							// const 表示定义符号常量
 bool seive[N + 1];
-for (int i = 2; i <= N; i++)
+
+for (int i = 2; i <= N; i++)				// 初始化 “筛子” 系统
     seive[i] = true;
 
-for (int d = 2; d * d <= N; d++)
-    if (seive[d])
-        for (int x = d * d; x <= N; x += d)
+for (int d = 2; d * d <= N; d++) {			// 枚举 2 到 N 的平方根之间的每个数 d
+    if (seive[d]) {							// 如果 d 没有被筛掉
+        for (int x = d * d; x <= N; x += d)	// 用 d 筛掉 100 以内除了 d 之外 d 的倍数
             seive[x] = false;
+    }
+}
 
-for (int i = 2; i <= N; i++)
+for (int i = 2; i <= N; i++)				// 输出所有没有被筛掉的数
     if (seive[i])
         cout << i << " ";
 ```
@@ -121,25 +116,16 @@ for (int i = 2; i <= N; i++)
 
 - 扑克牌查找
 
-    1. 初始化 $13$ 张
-    2. 假设没有黑桃 $Q$
-    3. 依次枚举每一张牌
-        - 如果是黑桃 $Q$
-            - 记下位置
-            - 停止枚举
-    4. 如果找到
-        - 输出位置
-    5. 否则
-        - 输出没找到
-
     ```cpp
+    // 初始化 13 张牌
     int cards[13] = {101, 113, 303, 206, 405, 208, 311,
                      304, 410, 309, 112, 207, 402};
-    int pos = -1;
-    for (int i = 0; i < 13; i++) {
-        if (cards[i] == 112) {
-            pos = i;
-            break;
+    
+    int pos = -1;					// 假设没有黑桃 Q
+    for (int i = 0; i < 13; i++) {	// 依次枚举每一张牌
+        if (cards[i] == 112) {		// 如果是黑桃 Q
+            pos = i;				// 记下位置
+            break;					// 停止枚举
         }
     }
     
@@ -151,17 +137,16 @@ for (int i = 2; i <= N; i++)
 
 - 最小值查找
 
-    1. 初始化当前最小值及位置
-    2. 依次枚举每一张牌
-        - 如果比 $7$ 大
-            - 如果比最小值还小
-                - 更新最小值及位置
-
     ```cpp
-    int min = 100, pos = -1;
-    for (int i = 0; i < 13; i++)
-        if (cards[i] % 100 > 7 && cards[i] % 100 < min)
-            min = cards[i] % 100, pos = i;
+    int min = 100, pos = -1;			// 初始化当前最小值及位置
+    
+    for (int i = 0; i < 13; i++) {		// 依次枚举每一张牌
+        if (cards[i] % 100 > 7 && 		// 如果比 7 大，并且比最小值还小
+            cards[i] % 100 < min) {
+            min = cards[i] % 100;		// 更新最小值
+            pos = i;					// 更新位置
+        }
+    }
     ```
 
 不管是找特定的值，还是找满足特定条件的元素，基本思想还是一个一个依次枚举，比较的次数和总元素的个数呈线性关系，我们称这种查找方法为**线性查找**，也称**顺序查找**。
@@ -170,29 +155,19 @@ for (int i = 2; i <= N; i++)
 
 在待查序列有序的情况下，可以采用**折半查找**，也称**二分查找**。
 
-1. 初始化查找范围，假设没有黑桃 $Q$
-2. 如果范围内有牌，则一直做
-    - 选取中间一张
-    - 如果中间的牌是黑桃 $Q$
-        - 记下位置
-        - 停止查找
-    - 否则，如果中间的牌比黑桃 $Q$ 大
-        - 更新范围，在左侧寻找
-    - 否则
-        - 更新范围，在右侧寻找
-
 ```cpp
-int id = -1, low = 0, high = 12;
-while (low <= high) {
-    int mid = (low + high) / 2;
-    if (cards[mid] == 112) {
-        id = mid;
-        break;
+int id = -1, low = 0, high = 12;	// 初始化查找范围，假设没有黑桃 Q
+
+while (low <= high) {				// 如果范围内有牌，则一直做
+    int mid = (low + high) / 2;		// 选取中间一张
+    if (cards[mid] == 112) {		// 如果中间的牌是黑桃 Q
+        id = mid;					// 记下位置
+        break;						// 停止查找
     }
-    else if (cards[mid] > 112)
-        high = mid - 1;
+    else if (cards[mid] > 112)		// 否则，如果中间的牌比黑桃 Q 大
+        high = mid - 1;				// 更新范围，在左侧寻找
     else
-        low = mid + 1;
+        low = mid + 1;				// 更新范围，在右侧寻找
 }
 ```
 
@@ -202,26 +177,18 @@ while (low <= high) {
 
     以下插入排序的思路为简化之后的思路，代码更加简介，推荐使用。
 
-    - 枚举每张待插入的牌
-        - 枚举从空位置到第一个位置的每一个位置
-            - 如果当前位置的元素比待插入的牌大
-                - 把当前位置的牌向后挪
-            - 否则
-                - 把待插入的牌插入到当前位置的后继位置
-                - 结束当前插入过程
-
     ```cpp
     void InsertionSort(int cards[], int n)
     {
-        for (int i = 1; i < n; i++) {
-            int tag = cards[i];
-            for (int j = i-1; j >= 0; j--) {
-                if (cards[j] > tag) {
-                    cards[j+1] = cards[j];
+        for (int i = 1; i < n; i++) {			// 枚举每张待插入的牌
+            int tmp = cards[i];					// 记录待插入的牌
+            for (int j = i-1; j >= 0; j--) {	// 枚举从空位置到第一个位置的每一个位置
+                if (cards[j] > tmp) {			// 如果当前位置的元素比待插入的牌大
+                    cards[j+1] = cards[j];		// 把当前位置的牌向后挪
                 }
                 else {
-                    cards[j+1] = tag;
-                    break;
+                    cards[j+1] = tmp;			// 把待插入的牌插入到当前位置的后继位置
+                    break;						// 结束当前插入过程
                 }
             }
         }
@@ -230,27 +197,20 @@ while (low <= high) {
 
 - 选择排序
 
-    - 枚举每个位置 $i$
-        - 假设第 $i$ 个元素最小
-        - 枚举位置 $i$ 以后的每个元素 $j$
-            - 如果比最小值小
-                - 标记最小值为元素 $j$
-        - 将最小的牌交换到位置 $i$ 处
-
     ```cpp
     void SelectionSort(int cards[], int n)
     {
         // 最后一个元素没必要再选择了，因为后面没元素了
         // 换句话讲，单个元素默认有序，这与插入排序中的第一个元素不参与枚举是一致的
-    	for (int i = 0; i < n - 1; i++) {
-            int min = cards[i], min_id = i;
-            for (int j = i + 1; j < n; j++) {
-                if (cards[j] < min) {
-                    min = cards[j];
-                    min_id = j;
+    	for (int i = 0; i < n - 1; i++) {			// 枚举每个位置 i
+            int min = cards[i], min_id = i;			// 假设第 i 个元素最小
+            for (int j = i + 1; j < n; j++) {		// 枚举位置 i 之后的每个元素 j
+                if (cards[j] < min) {				// 如果比最小值小
+                    min = cards[j];					
+                    min_id = j;						// 标记最小值为元素 j
                 }
             }
-            cards[mid_id] = cards[i];
+            cards[mid_id] = cards[i];				// 将最小的牌交换到位置 i 处
             cards[i] = min;
         }
     }
