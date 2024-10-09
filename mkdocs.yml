@@ -18,7 +18,7 @@ nav:
     - ch8 非文本数据处理: Fundamentals_of_Programming/ch8.md
     - ch9 可配置的程序设计: Fundamentals_of_Programming/ch9.md
   - 面向对象: 
-    # - 课程简介: Object_Oriented_Programming/index.md
+    - 课程简介: Object_Oriented_Programming/index.md
     - ch1 编程环境: Object_Oriented_Programming/ch1.md
     - ch2 基础语法(1): Object_Oriented_Programming/ch2.md
     - ch3 基础语法(2): Object_Oriented_Programming/ch3.md
